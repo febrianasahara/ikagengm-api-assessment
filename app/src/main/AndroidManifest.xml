@@ -10,26 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".views.NewsArticleListActivity"
-            android:label="@string/title_newsarticle_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".views.NewsArticleDetailActivity"
-            android:label="@string/title_newsarticle_detail"
-            android:parentActivityName=".views.NewsArticleListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ikymasie.ny_times_api_assessment.views.NewsArticleListActivity" />
-        </activity>
-        <activity android:name=".BaseActivity">
+        <activity android:name=".views.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".BaseActivity"/>
     </application>
 
 </manifest>

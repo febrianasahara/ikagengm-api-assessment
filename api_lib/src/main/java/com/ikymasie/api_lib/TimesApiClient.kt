@@ -31,7 +31,7 @@ class ApiClient constructor(baseUrl: String, apiKey: String) {
         retrofit.create(ApiService::class.java)
     }
 
-    suspend fun getPopularArticles(period: Int): Call<PopularArticlesResponse> {
+     fun getPopularArticles(period: Int): Call<PopularArticlesResponse> {
         return apiService.getArticles(period,apiKEY)
     }
 }

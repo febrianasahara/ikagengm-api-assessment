@@ -20,7 +20,7 @@ class GlobalApplication: Application() {
                     CalligraphyInterceptor(
                         CalligraphyConfig.Builder()
                             .setDefaultFontPath("fonts/RobotoLight.ttf")
-                            .setFontAttrId(R.attr.fontPath)
+                            .setFontAttrId(R.attr.font)
                             .build()
                     )
                 )
