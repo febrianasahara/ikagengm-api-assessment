@@ -5,8 +5,8 @@ data class Results (
 
 	@SerializedName("uri") val uri : String,
 	@SerializedName("url") val url : String,
-	@SerializedName("id") val id : Int,
-	@SerializedName("asset_id") val asset_id : Int,
+	@SerializedName("id") val id : Long,
+	@SerializedName("asset_id") val asset_id : Long,
 	@SerializedName("source") val source : String,
 	@SerializedName("published_date") val published_date : String,
 	@SerializedName("updated") val updated : String,

@@ -2,20 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
+    android:layout_height="120dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:tag="button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="emoji_tongue.json"
+        app:lottie_fileName="chevron.json"
         app:lottie_loop="false" />
 
     <ImageView
@@ -23,8 +23,8 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:background="@drawable/rounded_image_view_shape"
+        android:tag="image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,43 +34,33 @@
         android:id="@+id/txt_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:ellipsize="end"
-        android:maxLines="1"
+        android:maxLines="2"
         android:paddingLeft="8dp"
+        android:tag="title"
         android:text="TextView"
         android:textColor="@color/primaryTextColor"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/txt_extra"
-        app:layout_constraintHorizontal_bias="0.046"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txt_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:maxLines="1"
+        android:maxLines="2"
         android:paddingLeft="8dp"
         android:paddingTop="2dp"
+        android:tag="subtitle"
         android:text="TextView"
         android:textColor="@android:color/tertiary_text_light"
-        app:layout_constraintEnd_toEndOf="@+id/txt_title"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/txt_title" />
-
-    <TextView
-        android:id="@+id/txt_extra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:paddingLeft="8dp"
-        android:text="TextView"
-        android:textColor="#8BC34A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_title" />
 
     <View
         android:id="@+id/view"
@@ -80,4 +70,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_extra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:paddingLeft="8dp"
+        android:tag="date"
+        android:text="TextView"
+        android:textColor="#8BC34A"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/txt_subtitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,9 +35,9 @@ class NewsListAdapter (private val dataSet: List<Results>, private val click: On
         init {
             // Define click listener for the ViewHolder's View.
             title = view.findViewById(R.id.txt_title)
-            subtitle = view.findViewById(R.id.txt_title)
-            extraText = view.findViewById(R.id.txt_title)
-            image = view.findViewById(R.id.txt_title)
+            subtitle = view.findViewById(R.id.txt_subtitle)
+            extraText = view.findViewById(R.id.txt_extra)
+            image = view.findViewById(R.id.imageView)
 
         }
     }
@@ -99,16 +99,22 @@ class NewsListAdapter (private val dataSet: List<Results>, private val click: On
         viewHolder.title.text = item.title
         viewHolder.subtitle.text = item.abstract
         viewHolder.extraText.text = item.section
-        val photoUrl =item.media.get(0).mediametadata.get(0).url
-        val url = if ( photoUrl != null) "$photoUrl" else null //1
-        Glide.with(viewHolder.itemView)  //2
-            .load(url) //3
-            .centerCrop() //4
-            .placeholder(R.drawable.ic_image_placeholder) //5
-            .error(R.drawable.ic_broken_image) //6
-            .fallback(R.drawable.ic_broken_image) //7
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(viewHolder.image) //8
+        val image =item.media
+        if(image.isNotEmpty()){
+            val photoUrl =item.media!!.get(0).mediametadata!!.get(0).url
+            val url = if ( photoUrl != null) "$photoUrl" else null
+
+            //using glide library to elegantly load and cache images
+            Glide.with(viewHolder.itemView)
+                .load(url)
+                .centerCrop()
+                .placeholder(R.drawable.ic_image_placeholder)
+                .error(R.drawable.ic_broken_image)
+                .fallback(R.drawable.ic_broken_image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(viewHolder.image)
+        }
+
 
 
         viewHolder.itemView.setOnClickListener{

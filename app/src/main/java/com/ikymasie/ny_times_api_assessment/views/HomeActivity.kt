@@ -35,6 +35,7 @@ class HomeActivity : BaseActivity(), OnItemClick  {
     }
 
     fun onBind(){
+        list.layoutManager =  LinearLayoutManager(instance)
         initConfig()
         refresher.setOnRefreshListener {
             refresh()                    // refresh your list contents somehow
@@ -85,7 +86,7 @@ class HomeActivity : BaseActivity(), OnItemClick  {
                         // handle response and attach to view handler
                         articles = response.body()!!.results
                         adapter = NewsListAdapter(articles,instance)
-                        list.layoutManager =  LinearLayoutManager(instance)
+
                         list.adapter = adapter
                         refresher.isRefreshing = false
                     }
@@ -100,7 +101,8 @@ class HomeActivity : BaseActivity(), OnItemClick  {
     }
     private fun onErrorCallback(message: String){
         // log error
-
+        Toast.makeText(instance,message,Toast.LENGTH_LONG).show()
+        Log.e(TAG,message)
         // show error dialog
     }
 

@@ -9,8 +9,8 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("/svc/mostpopular/v2/viewed/{period}.json?api-key={key}")
+    @GET("/svc/mostpopular/v2/viewed/{period}.json")
     fun getArticles(@Path("period") period : Int,
-                            @Query("key")apiKey : String): Call<PopularArticlesResponse>
+                            @Query("api-key")apiKey : String): Call<PopularArticlesResponse>
 
 }
