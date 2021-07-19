@@ -53,15 +53,7 @@ class NewsListAdapter (private val dataSet: List<Results>, private val click: On
                         if (row.title.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             resultList.add(row)
                         }
-                        if (row.abstract.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
-                            resultList.add(row)
-                        }
-                        if (row.byline.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
-                            resultList.add(row)
-                        }
-                        if (row.adx_adx_keywordswords.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
-                            resultList.add(row)
-                        }
+
                     }
                     resultFilterList = resultList
                 }
@@ -78,9 +70,7 @@ class NewsListAdapter (private val dataSet: List<Results>, private val click: On
         }
     }
 
-    fun getItemAtPosition(position: Int): Results {
-       return resultFilterList[position]
-    }
+
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
@@ -95,10 +85,10 @@ class NewsListAdapter (private val dataSet: List<Results>, private val click: On
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        val item = dataSet[position]
+        val item = resultFilterList[position]
         viewHolder.title.text = item.title
-        viewHolder.subtitle.text = item.abstract
-        viewHolder.extraText.text = item.section
+        viewHolder.subtitle.text = item.byline
+        viewHolder.extraText.text = item.published_date
         val image =item.media
         if(image.isNotEmpty()){
             val photoUrl =item.media!!.get(0).mediametadata!!.get(0).url
@@ -123,5 +113,5 @@ class NewsListAdapter (private val dataSet: List<Results>, private val click: On
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = resultFilterList.size
 }

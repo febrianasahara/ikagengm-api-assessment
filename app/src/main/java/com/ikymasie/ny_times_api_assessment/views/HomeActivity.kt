@@ -2,9 +2,12 @@ package com.ikymasie.ny_times_api_assessment.views
 
 import PopularArticlesResponse
 import Results
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.ktx.Firebase
@@ -27,6 +30,7 @@ class HomeActivity : BaseActivity(), OnItemClick  {
     private val TAG = "HomeActivity"
     private lateinit var articles: List<Results>;
     private lateinit var adapter: NewsListAdapter
+    private var filterIndex = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +38,42 @@ class HomeActivity : BaseActivity(), OnItemClick  {
         onBind()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        val search = menu.findItem(R.id.appSearchBar)
+        val searchView = search.actionView as SearchView
+        searchView.queryHint = "Search Articles"
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.getFilter().filter(newText)
+                adapter.notifyDataSetChanged()
+                return true
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
+    }
+
     fun onBind(){
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = getString(R.string.my_name)
         list.layoutManager =  LinearLayoutManager(instance)
         initConfig()
         refresher.setOnRefreshListener {
             refresh()                    // refresh your list contents somehow
               // reset the SwipeRefreshLayout (stop the loading spinner)
         }
+       btn_filter.setOnPositionChangedListener { position ->
+           when (position) {
+               0 -> filterIndex = 1
+               1 -> filterIndex = 7
+               2 -> filterIndex = 30
+               else -> filterIndex = 1
+           }
+           refresh()
+       }
     }
 
     private fun initConfig() {
@@ -70,7 +103,7 @@ class HomeActivity : BaseActivity(), OnItemClick  {
     private fun refresh(){
         if(apiUtil!=null){
             refresher.isRefreshing = true
-            apiUtil!!.getPopularArticles(1).clone().enqueue(object: Callback<PopularArticlesResponse> {
+            apiUtil!!.getPopularArticles(filterIndex).clone().enqueue(object: Callback<PopularArticlesResponse> {
             override fun onFailure(call: Call<PopularArticlesResponse>?, t: Throwable?) {
                 // network error
                 onErrorCallback(t!!.message!!)
@@ -105,11 +138,15 @@ class HomeActivity : BaseActivity(), OnItemClick  {
         Log.e(TAG,message)
         // show error dialog
     }
-
     override fun onItemClick(position: Int) {
-        var selectedItem = adapter.getItemAtPosition(position)
-        Log.d(TAG,"SELECTED: ${selectedItem.id}")
+        var selectedItem = articles[position]
+        Log.d(TAG,"SELECTED: ${selectedItem.title}")
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // Apply activity transition
+        } else {
+            // Swap without transition
+        }
     }
 
 }

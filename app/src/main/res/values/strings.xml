@@ -2,4 +2,5 @@
     <string name="app_name">NY-Times-API-Assessment</string>
     <string name="title_newsarticle_list">NewsArticles</string>
     <string name="title_newsarticle_detail">NewsArticle Detail</string>
+    <string name="my_name">Ikageng Masie</string>
 </resources>

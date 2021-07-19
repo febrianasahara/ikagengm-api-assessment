@@ -57,7 +57,11 @@ dependencies {
     //animationns
     implementation 'com.airbnb.android:lottie:3.0.7'
 
+    // image helpers
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+
+    // custom views
+    implementation 'com.github.addisonelliott:SegmentedButton:3.1.9'
 
 }
 
