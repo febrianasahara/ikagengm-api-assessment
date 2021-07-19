@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "453708083502",
+    "project_id": "ny-times-assessment",
+    "storage_bucket": "ny-times-assessment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453708083502:android:7b9afe50064b106d72cabf",
+        "android_client_info": {
+          "package_name": "com.ikymasie.ny_times_api_assessment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453708083502-r99f1dqp92iupkr9rf4uf58po04f21e5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1wZXybyLAqSW_fS7pidCdhtlxN_SPf4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453708083502-r99f1dqp92iupkr9rf4uf58po04f21e5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
