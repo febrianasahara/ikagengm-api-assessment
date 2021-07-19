@@ -101,11 +101,14 @@ class HomeActivity : BaseActivity(), OnItemClick  {
             }
     }
     private fun refresh(){
+
         if(apiUtil!=null){
+            // show refreshing UI
             refresher.isRefreshing = true
+            // fetch articles from NY Times API using a filterIndex (period)
             apiUtil!!.getPopularArticles(filterIndex).clone().enqueue(object: Callback<PopularArticlesResponse> {
             override fun onFailure(call: Call<PopularArticlesResponse>?, t: Throwable?) {
-                // network error
+                // unknown error handler
                 onErrorCallback(t!!.message!!)
                 refresher.isRefreshing = false
             }
@@ -116,16 +119,20 @@ class HomeActivity : BaseActivity(), OnItemClick  {
             ) {
                 if (response?.isSuccessful!!) {
                     if(response.body()!!.status == "OK"){
-                        // handle response and attach to view handler
+                        // successful api call
                         articles = response.body()!!.results
                         adapter = NewsListAdapter(articles,instance)
 
                         list.adapter = adapter
                         refresher.isRefreshing = false
+                    }else{
+                        // api error handler
+                        refresher.isRefreshing = false
+                        onErrorCallback("Error: ${response.body()!!.status}")
                     }
                 } else {
-                   // api error
-                    onErrorCallback("Error: ${response.body()!!.status}")
+                   // network error handler
+                    onErrorCallback("Error: ${response.message()}")
                     refresher.isRefreshing = false
                 }
             }
