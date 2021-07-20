@@ -1,18 +1,17 @@
 package com.ikymasie.ny_times_api_assessment.views
 
 
-import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import com.ikymasie.ny_times_api_assessment.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -22,21 +21,17 @@ import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class HomeViewTest {
-
-    @Mock
-    private var context: Context? = null
+class MainInstrumentationTests {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(HomeActivity::class.java)
 
     @Test
-    fun homeViewTest() {
+    fun mainInstrumentationTests() {
         val segmentedButton = onView(
             allOf(
                 withText("Past Week"),
@@ -54,6 +49,21 @@ class HomeViewTest {
 
         val segmentedButton2 = onView(
             allOf(
+                withText("Past Week"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.FrameLayout")),
+                        0
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        segmentedButton2.perform(click())
+
+        val segmentedButton3 = onView(
+            allOf(
                 withText("Past Month"),
                 childAtPosition(
                     childAtPosition(
@@ -65,7 +75,58 @@ class HomeViewTest {
                 isDisplayed()
             )
         )
-        segmentedButton2.perform(click())
+        segmentedButton3.perform(click())
+
+        val actionMenuItemView = onView(
+            allOf(
+                withId(R.id.appSearchBar), withContentDescription("Search"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.toolbar),
+                        1
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        actionMenuItemView.perform(click())
+
+        val searchAutoComplete = onView(
+            allOf(
+                withId(R.id.search_src_text),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.search_plate),
+                        childAtPosition(
+                            withId(R.id.search_edit_frame),
+                            1
+                        )
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        searchAutoComplete.perform(replaceText("prompts"), closeSoftKeyboard())
+
+        val searchAutoComplete2 = onView(
+            allOf(
+                withId(R.id.search_src_text), withText("prompts"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.search_plate),
+                        childAtPosition(
+                            withId(R.id.search_edit_frame),
+                            1
+                        )
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        searchAutoComplete2.perform(pressImeActionButton())
 
         val recyclerView = onView(
             allOf(
@@ -78,61 +139,39 @@ class HomeViewTest {
         )
         recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
 
-        val appCompatImageView = onView(
+        val textView = onView(
             allOf(
-                withClassName(`is`("androidx.appcompat.widget.AppCompatImageView")),
-                withContentDescription("Search"),
+                withId(R.id.article_title),
+                withText("A Disparaging Video Prompts Explosive Fallout Within ESPN"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.cardView),
+                        0
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(isDisplayed()))
+
+        val textView2 = onView(
+            allOf(
+                withId(R.id.date), withText("2021-07-04"),
                 childAtPosition(
                     allOf(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withId(R.id.btn_view_full),
                         childAtPosition(
-                            withId(R.id.appSearchBar),
+                            withId(android.R.id.content),
                             0
                         )
                     ),
-                    1
+                    2
                 ),
                 isDisplayed()
             )
         )
-        appCompatImageView.perform(click())
-
-        val searchAutoComplete = onView(
-            allOf(
-                withClassName(`is`("android.widget.SearchView${SearchView.SearchAutoComplete(context)}")),
-                childAtPosition(
-                    allOf(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        childAtPosition(
-                            withClassName(`is`("android.widget.LinearLayout")),
-                            1
-                        )
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        searchAutoComplete.perform(replaceText("erin"), closeSoftKeyboard())
-
-        val appCompatImageView2 = onView(
-            allOf(
-                withClassName(`is`("androidx.appcompat.widget.AppCompatImageView")),
-                withContentDescription("Clear query"),
-                childAtPosition(
-                    allOf(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        childAtPosition(
-                            withClassName(`is`("android.widget.LinearLayout")),
-                            1
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageView2.perform(click())
+        textView2.check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(

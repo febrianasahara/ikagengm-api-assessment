@@ -1,12 +1,189 @@
 <resources>
-    <string name="app_name">NY-Times-API-Assessment</string>
-    <string name="title_newsarticle_list">NewsArticles</string>
-    <string name="title_newsarticle_detail">NewsArticle Detail</string>
+    <string name="app_name">Ikageng Masie</string>
     <string name="my_name">Ikageng Masie</string>
-    <string name="title_activity_article_detail">ArticleDetailActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
+    <string name="default_title">Sample-title</string>
+    <string name="default_by_author">by Author</string>
+    <string name="btn_view_full_article">view full article</string>
+    <string name="default_empty_text">Demo Content</string>
+    <string name="default_date">2021-2-12</string>
+    <string name="main_image_display">Main image display</string>
+    <string name="title_activity_article_detail">Meh</string>
+    <string name="test_data_item">
+        {
+            "uri": "some-url",
+            "url": "blah-ba",
+            "id": 100000007869975,
+            "asset_id": 100000007869975,
+            "source": "New York Times",
+            "published_date": "2021-07-19",
+            "updated": "2021-07-20 00:50:58",
+            "section": "Opinion",
+            "subsection": "",
+            "nytdsection": "opinion",
+            "adx_keywords": "Vaccination and Immunization;Coronavirus (2019-nCoV);Rural Areas;State Legislatures;Rumors and Misinformation;Parton, Dolly;Fiscus, Michelle;Tennessee",
+            "column": null,
+            "byline": "By Margaret Renkl",
+            "type": "Article",
+            "title": "Dolly Parton Tried. But Tennessee Is Squandering a Miracle.",
+            "abstract": "I just don’t get it.",
+            "des_facet": [
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [],
+            "media": [
+                {
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "John Seakwood/Walt Disney Television, via Getty Images",
+                    "approved_for_syndication": 1,
+                    "media-metadata": [
+                        {
+                            "url": "some-urrl",
+                            "format": "Standard Thumbnail",
+                            "height": 75,
+                            "width": 75
+                        },
+                        {
+                            "url": "some-item",
+                            "format": "mediumThreeByTwo210",
+                            "height": 140,
+                            "width": 210
+                        },
+                        {
+                            "url": "some-urrl",
+                            "format": "mediumThreeByTwo440",
+                            "height": 293,
+                            "width": 440
+                        }
+                    ]
+                }
+            ],
+            "eta_id": 0
+        }
+    </string>
+    <string name="test_data_list">
+         [{
+            "uri": "",
+            "url": "some-url",
+            "id": 100000007869975,
+            "asset_id": 100000007869975,
+            "source": "New York Times",
+            "published_date": "2021-07-19",
+            "updated": "2021-07-20 00:50:58",
+            "section": "Opinion",
+            "subsection": "",
+            "nytdsection": "opinion",
+            "adx_keywords": "Vaccination and Immunization;Coronavirus (2019-nCoV);Rural Areas;State Legislatures;Rumors and Misinformation;Parton, Dolly;Fiscus, Michelle;Tennessee",
+            "column": null,
+            "byline": "By Margaret Renkl",
+            "type": "Article",
+            "title": "Dolly Parton Tried. But Tennessee Is Squandering a Miracle.",
+            "abstract": "I just don’t get it.",
+            "des_facet": [
+                "Vaccination and Immunization",
+                "Coronavirus (2019-nCoV)",
+                "Rural Areas",
+                "State Legislatures",
+                "Rumors and Misinformation"
+            ],
+            "org_facet": [],
+            "per_facet": [
+                "Parton, Dolly",
+                "Fiscus, Michelle"
+            ],
+            "geo_facet": [
+                "Tennessee"
+            ],
+            "media": [
+                {
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "",
+                    "copyright": "John Seakwood/Walt Disney Television, via Getty Images",
+                    "approved_for_syndication": 1,
+                    "media-metadata": [
+                        {
+                            "url": "some-url",
+                            "format": "Standard Thumbnail",
+                            "height": 75,
+                            "width": 75
+                        },
+                        {
+                            "url": "some-url",
+                            "format": "mediumThreeByTwo210",
+                            "height": 140,
+                            "width": 210
+                        },
+                        {
+                            "url": "soome-url",
+                            "format": "mediumThreeByTwo440",
+                            "height": 293,
+                            "width": 440
+                        }
+                    ]
+                }
+            ],
+            "eta_id": 0
+        },
+        {
+            "uri": "some-url",
+            "url": "soome-url",
+            "id": 100000007873103,
+            "asset_id": 100000007873103,
+            "source": "New York Times",
+            "published_date": "2021-07-19",
+            "updated": "2021-07-20 03:44:06",
+            "section": "World",
+            "subsection": "Asia Pacific",
+            "nytdsection": "world",
+            "adx_keywords": "Olympic Games (2020);Coronavirus (2019-nCoV);Tokyo (Japan);Japan",
+            "column": null,
+            "byline": "By Austin Ramzy",
+            "type": "Article",
+            "title": "‘Anti-Sex’ Beds in the Olympic Village? A Social Media Theory Is Soon Debunked",
+            "abstract": "The coronavirus has forced a number of social distancing measures at the Summer Games, but the recyclable cardboard beds provided by organizers are not one of them.",
+            "des_facet": [
+                "Olympic Games (2020)",
+                "Coronavirus (2019-nCoV)"
+            ],
+            "org_facet": [],
+            "per_facet": [],
+            "geo_facet": [
+                "Tokyo (Japan)",
+                "Japan"
+            ],
+            "media": [
+                {
+                    "type": "image",
+                    "subtype": "photo",
+                    "caption": "A recyclable cardboard bed and mattress for athletes.",
+                    "copyright": "Pool photo by Akio Kon",
+                    "approved_for_syndication": 1,
+                    "media-metadata": [
+                        {
+                            "url": "blah-blah",
+                            "format": "Standard Thumbnail",
+                            "height": 75,
+                            "width": 75
+                        },
+                        {
+                            "url": "blah-blah",
+                            "format": "mediumThreeByTwo210",
+                            "height": 140,
+                            "width": 210
+                        },
+                        {
+                            "url": "blah-blah",
+                            "format": "mediumThreeByTwo440",
+                            "height": 293,
+                            "width": 440
+                        }
+                    ]
+                }
+            ],
+            "eta_id": 0
+        }]
+    </string>
 </resources>
