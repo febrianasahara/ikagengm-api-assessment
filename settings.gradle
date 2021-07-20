@@ -1,0 +1,3 @@
+include ':api_lib'
+include ':app'
+rootProject.name = "NY-Times-API-Assessment"
