@@ -23,15 +23,20 @@ import retrofit2.Callback
 import retrofit2.Response
 
 private const val TAG = "HomeActivity"
+
+/**
+ * HomeActivity is the MASTER view
+ * Displays results from new repository
+ * */
 class HomeActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener, SegmentedButtonGroup.OnPositionChangedListener {
+
     var apiUtil: ApiClient? = null
     var errorMessage: String? = null
-    private val instance = this
-
-
-     var articles = ArrayList<Results>()
-    private lateinit var presenter: NewsListPresenter
     var filterIndex = 1
+    var articles = ArrayList<Results>()
+
+    private lateinit var presenter: NewsListPresenter
+    private val instance = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +64,9 @@ class HomeActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener, Segme
         })
         return super.onCreateOptionsMenu(menu)
     }
-
+    /**
+     * onBind - Instanties view children and adds appropriate listners to handle user interaction
+     * */
     fun onBind(){
         setSupportActionBar(toolbar)
         supportActionBar!!.title = getString(R.string.my_name)
@@ -67,13 +74,19 @@ class HomeActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener, Segme
         refresher.setOnRefreshListener(this)
         btn_filter.onPositionChangedListener = this
     }
-
+    /**
+     * toggleLoadingUI - Show/Hide list loading
+     * */
     fun toggleLoadingUI(loading:Boolean){
         refresher.isRefreshing = loading
     }
-
+    /**
+     * initConfig - Fetch config which contains SENSITIVE DATA
+     * */
     fun initConfig(): Task<Boolean> {
        toggleLoadingUI(true)
+
+        // using Firebase Remote Config to fetch sensitive data
         var remoteConfig  = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
             .setMinimumFetchIntervalInSeconds(1)
@@ -87,7 +100,9 @@ class HomeActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener, Segme
                     remoteConfig.getString("baseUrl"))
         }
     }
-
+    /**
+     * refresh - call news Repository using API Client
+     * */
     fun refresh(){
             // fetch articles from NY Times API using a filterIndex (period)
           return  apiUtil!!.getPopularArticles(filterIndex).clone().enqueue(object: Callback<PopularArticlesResponse> {
@@ -105,13 +120,17 @@ class HomeActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener, Segme
             }
         })
     }
-
+    /**
+     * onConfigLoaded - creates new instance of API client once configuration has successfully loaded
+     * */
     fun onConfigLoaded(key: String, url: String){
         apiUtil = ApiClient(url, key)
         refresher.isRefreshing = true
         refresh()
     }
-
+    /**
+     * onDataSuccess - creates instance of presenter once results are returned from the api
+     * */
     fun onDataSuccess(body:ArrayList<Results>){
         articles = body
         presenter = NewsListPresenter(articles, instance)
@@ -119,7 +138,9 @@ class HomeActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener, Segme
         list.adapter = presenter
         toggleLoadingUI(false)
     }
-
+    /**
+     * onErrorCallback - generic function to handle app errors
+     * */
     fun onErrorCallback(message: String){
         // log error
         Toast.makeText(instance,message,Toast.LENGTH_LONG).show()
@@ -128,14 +149,18 @@ class HomeActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener, Segme
         errorMessage = message
         // show error dialog
     }
-
+    /**
+     * onRefresh - refreshes UI for Search Activity
+     * */
     override fun onRefresh() {
         if(apiUtil!=null) {
             toggleLoadingUI(true)
             refresh()
         }
     }
-
+    /**
+     * onPositionChanged - handles button filter (switching periods between accepted values)
+     * */
     override fun onPositionChanged(position: Int) {
         filterIndex = when (position) {
             0 -> 1
