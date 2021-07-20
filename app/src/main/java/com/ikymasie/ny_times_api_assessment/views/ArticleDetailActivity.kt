@@ -11,7 +11,9 @@ import com.ikymasie.ny_times_api_assessment.R
 import kotlinx.android.synthetic.main.activity_article_detail.*
 
 const val ITEM_DETAIL_PARAM: String = "articleDetailParam"
-
+/**
+ * ArticleDetailActivity - the DETAIL activity, responsible to hosting user selected new article
+ * */
 class ArticleDetailActivity : BaseActivity() {
     // static instance of current activity
     val instance = this
