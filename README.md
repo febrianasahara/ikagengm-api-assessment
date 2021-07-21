@@ -1,4 +1,4 @@
-[![N|Solid](https://app.bitrise.io/app/641df03f75aa4deb.svg?token=kJ-B_o9Qk_r7gTJcR8zHSg)
+[![N|Solid](https://app.bitrise.io/app/641df03f75aa4deb.svg?token=kJ-B_o9Qk_r7gTJcR8zHSg)](https://firebasestorage.googleapis.com/v0/b/ny-times-assessment.appspot.com/o/55f4b23d-730d-4fd7-bf81-3c1a8da70667.log?alt=media&token=2eef138b-bdf4-4d50-8635-95fb745ccaa6)
 ## Ikageng Masie
 ## Interview Assessment (Code Evaluation)
 
