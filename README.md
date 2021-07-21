@@ -1,3 +1,4 @@
+[![N|Solid](https://app.bitrise.io/app/641df03f75aa4deb.svg?token=kJ-B_o9Qk_r7gTJcR8zHSg)
 ## Ikageng Masie
 ## Interview Assessment (Code Evaluation)
 
